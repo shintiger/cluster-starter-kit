@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo certbot --preferred-challenges dns --mannual certonly
+sudo certbot --preferred-challenges dns --manual certonly
