@@ -6,7 +6,7 @@ frontend http_front
    mode http
 
    # This is our new config that listens on port 443 for SSL connections
-   bind *:443 ssl crt /etc/ssl/shintiger.io/shintiger.io.pem
+   bind *:443 ssl crt /etc/ssl/example.com/example.com.pem
    stats uri /haproxy?stats
    redirect scheme https code 301 if !{ ssl_fc }
    default_backend http_back
@@ -14,8 +14,8 @@ frontend http_front
 backend http_back
    mode http
    balance roundrobin
-   server worker1 157.230.248.52:80
-   server worker2 157.230.242.146:80
+   server worker1 <ip>:80
+   server worker2 <ip>:80
 
 # listen stats
 #    bind *:8181

@@ -2,6 +2,6 @@
 
 certbot renew
 
-bash -c "cat /etc/letsencrypt/live/demo.com/fullchain.pem /etc/letsencrypt/live/demo.com/privkey.pem > /etc/ssl/demo.com/demo.com.pem"
+bash -c "cat /etc/letsencrypt/live/example.com/fullchain.pem /etc/letsencrypt/live/example.com/privkey.pem > /etc/ssl/example.com/example.com.pem"
 
 source /root/cluster-starter-kit/haproxy/reload.sh
