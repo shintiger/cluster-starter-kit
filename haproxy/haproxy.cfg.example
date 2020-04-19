@@ -5,6 +5,14 @@ frontend http_front
    bind *:80   
    mode http
 
+   # Define hosts
+   # acl host_bacon hdr(host) -i ilovebacon.com
+   # acl host_milkshakes hdr(host) -i bobsmilkshakes.com
+
+   ## figure out which one to use
+   # use_backend bacon_cluster if host_bacon
+   # use_backend milshake_cluster if host_milkshakes
+
    # This is our new config that listens on port 443 for SSL connections
    bind *:443 ssl crt /etc/ssl/example.com/example.com.pem
    stats uri /haproxy?stats
