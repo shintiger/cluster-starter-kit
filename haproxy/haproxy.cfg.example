@@ -16,6 +16,8 @@ backend http_back
    balance roundrobin
    server worker1 <ip>:80
    server worker2 <ip>:80
+   server worker1 <ip>:80 check
+   server worker2 <ip>:80 check
 
 # listen stats
 #    bind *:8181
