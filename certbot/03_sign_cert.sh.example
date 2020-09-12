@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo certbot certonly \
+  --dns-cloudflare \
+  --dns-cloudflare-credentials ./cloudflare.ini \
+  -d <example.com> \
+  -d *.<example.com>
