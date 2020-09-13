@@ -18,4 +18,8 @@ rm -rf dataplaneapi
 
 sudo cp dataplaneapi.service /etc/systemd/system/
 
+sudo apt install -y socat
+# echo "help" | socat stdio tcp4-connect:127.0.0.1:9999
+# echo "set server be_template/websrv1 addr 192.168.50.112 port 8000" | socat stdio tcp4-connect:127.0.0.1:9999
+
 # sudo nano /etc/haproxy/haproxy.cfg

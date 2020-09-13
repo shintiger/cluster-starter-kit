@@ -2,6 +2,7 @@
 # haproxy -c -V -f /etc/haproxy/haproxy.cfg
 
 global
+   stats socket ipv4@127.0.0.1:9999 level admin
    stats socket /var/run/haproxy.sock user root mode 660 expose-fd listeners level admin
    master-worker
 
