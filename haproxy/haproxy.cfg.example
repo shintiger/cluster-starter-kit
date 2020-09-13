@@ -1,3 +1,6 @@
+# Validate this file before reload service
+# haproxy -c -V -f /etc/haproxy/haproxy.cfg
+
 global
    stats socket /var/run/haproxy.sock mode 600 expose-fd listeners level user
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt show haproxy
-sudo add-apt-repository ppa:vbernat/haproxy-1.8
+sudo add-apt-repository ppa:vbernat/haproxy-2.0
 sudo apt update
 sudo apt install -y haproxy
 
