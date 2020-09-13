@@ -1,0 +1,11 @@
+[Unit]
+After=haproxy.service
+Description=Dataplaneapi auto starter
+
+[Service]
+RestartSec=5
+Restart=always
+ExecStart=/root/cluster-starter-kit/haproxy/dataplaneapi.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -2,7 +2,15 @@
 # haproxy -c -V -f /etc/haproxy/haproxy.cfg
 
 global
-   stats socket /var/run/haproxy.sock mode 600 expose-fd listeners level user
+   stats socket /var/run/haproxy.sock user root mode 660 expose-fd listeners level admin
+   master-worker
+
+userlist dataplaneapi
+   user root insecure-password mypassword
+
+program api
+   command dataplaneapi --host 0.0.0.0 --port 5555 --haproxy-bin /usr/sbin/haproxy --config-file /etc/haproxy/haproxy.cfg --userlist dataplaneapi
+   no option start-on-reload
 
 frontend http_front
    bind *:80   
