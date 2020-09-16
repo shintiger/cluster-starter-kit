@@ -22,6 +22,16 @@ variable "cluster" {
   })
 }
 
+
+terraform {
+  required_providers {
+    digitalocean = {
+      source = "digitalocean/digitalocean"
+    }
+  }
+  required_version = ">= 0.13"
+}
+
 # Configure the DigitalOcean Provider
 provider "digitalocean" {
   token = var.do_token
