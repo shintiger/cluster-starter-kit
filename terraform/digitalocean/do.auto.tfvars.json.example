@@ -1,0 +1,4 @@
+{
+    "do_token": "------digitalocean api token--------",
+    "do_keys": [do ssh key id]
+}

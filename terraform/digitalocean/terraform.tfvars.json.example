@@ -1,0 +1,10 @@
+{
+    "swarm": {
+        "token": "-----worker-token-------",
+        "address": "127.0.0.1:2377"
+    },
+    "cluster": {
+        "instance_count": 2,
+        "tags":["frontend"]
+    }
+}
