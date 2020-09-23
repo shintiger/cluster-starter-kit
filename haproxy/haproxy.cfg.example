@@ -5,6 +5,10 @@ global
    stats socket ipv4@127.0.0.1:9999 level admin
    stats socket /var/run/haproxy.sock user root mode 660 expose-fd listeners level admin
    master-worker
+   server-state-file /usr/local/haproxy/haproxy.state
+
+defaults
+   load-server-state-from-file global
 
 userlist dataplaneapi
    user root insecure-password mypassword

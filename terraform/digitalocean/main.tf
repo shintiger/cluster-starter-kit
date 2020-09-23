@@ -17,6 +17,7 @@ variable "swarm" {
 
 variable "cluster" {
   type = object({
+    start_index = number
     instance_count = number
     tags           = list(string)
   })
@@ -42,7 +43,7 @@ provider "digitalocean" {
 resource "digitalocean_droplet" "lolotiger" {
   count              = var.cluster.instance_count
   image              = "docker-20-04"
-  name               = "lolotiger-terraform-${count.index}"
+  name               = "lolotiger-terraform-${(count.index + var.cluster.start_index) % 100}"
   region             = "sgp1"
   size               = "s-1vcpu-1gb"
   ssh_keys           = var.do_keys

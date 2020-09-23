@@ -5,6 +5,7 @@
     },
     "cluster": {
         "instance_count": 2,
+        "start_index": 1,
         "tags":["frontend"]
     }
 }
