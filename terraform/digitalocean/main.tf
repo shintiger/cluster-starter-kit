@@ -51,7 +51,7 @@ resource "digitalocean_droplet" "lolotiger" {
   private_networking = true
   resize_disk        = false
   tags               = var.cluster.tags
-  user_data          = templatefile("./cloud-config.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "frontend" })
+  user_data          = templatefile("./cloud-config-frontend.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "frontend" })
 }
 
 resource "digitalocean_droplet" "lolotiger-logging" {

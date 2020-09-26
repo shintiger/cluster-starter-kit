@@ -1,0 +1,6 @@
+#cloud-config
+runcmd:
+    - rm /etc/docker/daemon.json
+    - echo '{"labels":["role=${role}"]}, {"log-driver":"gelf", "log-opts":{"gelf-address":"udp://logstash:5001"} }' >> /etc/docker/daemon.json
+    - sudo service docker restart
+    - docker swarm join --token ${swarm_token} ${swarm_address}
