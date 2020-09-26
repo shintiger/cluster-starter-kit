@@ -1,0 +1,12 @@
+version: "3"
+  services:
+    registry:
+      image: registry:2
+      environment:
+        - REGISTRY_HTTP_ADDR: 0.0.0.0:5000
+      deploy:
+        replicas: 1
+        max_replicas_per_node: 1
+        placement:
+          constraints:
+            - "node.role==manager"
