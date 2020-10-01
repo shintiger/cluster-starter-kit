@@ -70,16 +70,16 @@ resource "digitalocean_droplet" "lolotiger" {
   user_data          = templatefile("./cloud-config-frontend.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "frontend" })
 }
 
-resource "digitalocean_droplet" "lolotiger-logging" {
-  count              = 1
-  image              = "docker-20-04"
-  name               = "lolotiger-logging-${(count.index) % 100}"
-  region             = "sgp1"
-  size               = "s-1vcpu-3gb"
-  ssh_keys           = var.do_keys
-  monitoring         = true
-  private_networking = true
-  resize_disk        = false
-  tags               = ["logging"]
-  user_data          = templatefile("./cloud-config.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "logging" })
-}
+# resource "digitalocean_droplet" "lolotiger-logging" {
+#   count              = 1
+#   image              = "docker-20-04"
+#   name               = "lolotiger-logging-${(count.index) % 100}"
+#   region             = "sgp1"
+#   size               = "s-1vcpu-3gb"
+#   ssh_keys           = var.do_keys
+#   monitoring         = true
+#   private_networking = true
+#   resize_disk        = false
+#   tags               = ["logging"]
+#   user_data          = templatefile("./cloud-config.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "logging" })
+# }
