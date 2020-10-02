@@ -90,7 +90,7 @@ resource "digitalocean_droplet" "lolotiger-controller" {
   image              = "docker-20-04"
   name               = "lolotiger-controller-${(count.index) % 100}"
   region             = "sgp1"
-  size               = "s-1vcpu-2gb"
+  size               = "s-1vcpu-1gb"
   ssh_keys           = var.do_keys
   monitoring         = true
   private_networking = true
