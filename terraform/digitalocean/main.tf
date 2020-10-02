@@ -10,8 +10,8 @@ variable "do_keys" {
 
 variable "swarm" {
   type = object({
-    token   = string
-    address = string
+    token        = string
+    address      = string
     gelf_address = string
   })
 }
