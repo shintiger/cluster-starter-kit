@@ -1,7 +1,8 @@
 {
     "swarm": {
         "token": "-----worker-token-------",
-        "address": "127.0.0.1:2377"
+        "address": "127.0.0.1:2377",
+        "gelf_address":"udp://<gelf_host>:<gelf_port>"
     },
     "cluster": {
         "instance_count": 2,
