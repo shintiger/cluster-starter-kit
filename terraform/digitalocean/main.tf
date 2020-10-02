@@ -39,7 +39,23 @@ provider "digitalocean" {
   token = var.do_token
 }
 
-# Create a web server
+# $5
+# s-1vcpu-1gb
+
+# $10
+# s-1vcpu-2gb
+
+# $15
+# s-1vcpu-3gb - hidden
+# s-2vcpu-2gb
+# s-3vcpu-1gb - hidden
+
+# $20
+# s-2vcpu-4gb
+
+# $40
+# s-4vcpu-8gb
+
 # Create a new Web Droplet in the sgp1 region
 resource "digitalocean_droplet" "lolotiger" {
   count              = var.cluster.instance_count
@@ -60,7 +76,7 @@ resource "digitalocean_droplet" "lolotiger-logging" {
   image              = "docker-20-04"
   name               = "lolotiger-logging-${(count.index) % 100}"
   region             = "sgp1"
-  size               = "s-1vcpu-2gb"
+  size               = "s-1vcpu-3gb"
   ssh_keys           = var.do_keys
   monitoring         = true
   private_networking = true
