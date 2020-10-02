@@ -68,7 +68,7 @@ resource "digitalocean_droplet" "lolotiger" {
   private_networking = true
   resize_disk        = false
   tags               = var.cluster.tags
-  user_data          = templatefile("./cloud-config-gelf.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "frontend" })
+  user_data          = templatefile("./cloud-config-gelf.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "frontend", gelf_address = var.swarm.gelf_address })
 }
 
 resource "digitalocean_droplet" "lolotiger-logging" {
@@ -82,7 +82,7 @@ resource "digitalocean_droplet" "lolotiger-logging" {
   private_networking = true
   resize_disk        = false
   tags               = ["logging"]
-  user_data          = templatefile("./cloud-config.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "logging", gelf_address = var.swarm.gelf_address })
+  user_data          = templatefile("./cloud-config.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "logging" })
 }
 
 resource "digitalocean_droplet" "lolotiger-controller" {
@@ -96,5 +96,5 @@ resource "digitalocean_droplet" "lolotiger-controller" {
   private_networking = true
   resize_disk        = false
   tags               = ["controller"]
-  user_data          = templatefile("./cloud-config-gelf.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "logging", gelf_address = var.swarm.gelf_address })
+  user_data          = templatefile("./cloud-config-gelf.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "controller", gelf_address = var.swarm.gelf_address })
 }
