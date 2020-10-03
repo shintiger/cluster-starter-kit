@@ -58,7 +58,7 @@ provider "digitalocean" {
 # s-4vcpu-8gb
 
 # Create a new Web Droplet in the sgp1 region
-resource "digitalocean_droplet" "lolotiger" {
+resource "digitalocean_droplet" "cluster-frontend" {
   count              = var.cluster.instance_count
   image              = "docker-20-04"
   name               = "${var.cluster.project_name}-frontend-${(count.index + var.cluster.start_index) % 100}"
@@ -72,7 +72,7 @@ resource "digitalocean_droplet" "lolotiger" {
   user_data          = templatefile("./cloud-config-gelf.yml", { swarm_token = var.swarm.token, swarm_address = var.swarm.address, role = "frontend", gelf_address = var.swarm.gelf_address })
 }
 
-resource "digitalocean_droplet" "lolotiger-logging" {
+resource "digitalocean_droplet" "cluster-logging" {
   lifecycle {
     ignore_changes = [
       tags,
