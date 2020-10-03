@@ -18,6 +18,7 @@ variable "swarm" {
 
 variable "cluster" {
   type = object({
+    project_name   = string
     start_index    = number
     instance_count = number
     tags           = list(string)
@@ -60,7 +61,7 @@ provider "digitalocean" {
 resource "digitalocean_droplet" "lolotiger" {
   count              = var.cluster.instance_count
   image              = "docker-20-04"
-  name               = "lolotiger-frontend-${(count.index + var.cluster.start_index) % 100}"
+  name               = "${var.cluster.project_name}-frontend-${(count.index + var.cluster.start_index) % 100}"
   region             = "sgp1"
   size               = "s-1vcpu-1gb"
   ssh_keys           = var.do_keys
@@ -72,9 +73,16 @@ resource "digitalocean_droplet" "lolotiger" {
 }
 
 resource "digitalocean_droplet" "lolotiger-logging" {
+  lifecycle {
+    ignore_changes = [
+      tags,
+      ssh_keys,
+      user_data
+    ]
+  }
   count              = 1
   image              = "docker-20-04"
-  name               = "lolotiger-logging-${(count.index) % 100}"
+  name               = "${var.cluster.project_name}-logging-${(count.index) % 100}"
   region             = "sgp1"
   size               = "s-1vcpu-3gb"
   ssh_keys           = var.do_keys
@@ -86,9 +94,15 @@ resource "digitalocean_droplet" "lolotiger-logging" {
 }
 
 resource "digitalocean_droplet" "lolotiger-controller" {
+  lifecycle {
+    ignore_changes = [
+      tags,
+      user_data
+    ]
+  }
   count              = 1
   image              = "docker-20-04"
-  name               = "lolotiger-controller-${(count.index) % 100}"
+  name               = "${var.cluster.project_name}-controller-${(count.index) % 100}"
   region             = "sgp1"
   size               = "s-1vcpu-1gb"
   ssh_keys           = var.do_keys
