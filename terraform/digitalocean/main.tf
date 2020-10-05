@@ -63,7 +63,7 @@ resource "digitalocean_droplet" "cluster-frontend" {
   image              = "docker-20-04"
   name               = "${var.cluster.project_name}-frontend-${(count.index + var.cluster.start_index) % 100}"
   region             = "sgp1"
-  size               = "s-1vcpu-1gb"
+  size               = "s-1vcpu-2gb"
   ssh_keys           = var.do_keys
   monitoring         = true
   private_networking = true
